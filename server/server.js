@@ -65,7 +65,7 @@ app.post('/api/start-interview', async (req, res) => {
     systemPrompt += `\nDifficulty level: ${difficulty || 'intermediate'}`;
     systemPrompt += `\n\nStart by introducing yourself as an AI interviewer and ask the first question. Be professional but friendly.`;
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
     
     const result = await model.generateContent(systemPrompt);
     const response = await result.response;
@@ -86,16 +86,13 @@ app.post('/api/chat', async (req, res) => {
   try {
     const { message, history, skillType } = req.body;
     
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
     
     const chat = model.startChat({
       history: history.map(msg => ({
         role: msg.role,
         parts: [{ text: msg.content }]
       })),
-      generationConfig: {
-        maxOutputTokens: 1000,
-      },
     });
 
     const result = await chat.sendMessage(message);
@@ -128,7 +125,7 @@ AREAS_FOR_IMPROVEMENT:
 - [area 2]
 DETAILED_FEEDBACK: [2-3 sentences of specific feedback]`;
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
     const result = await model.generateContent(evaluationPrompt);
     const response = await result.response;
     const text = response.text();
