@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'AIzaSyC1OmZNQU0GVgRD5tK3YmaIk77f0aUdvTQ');
 
 const INTERVIEW_PROMPTS = {
   coding: `You are a technical interviewer assessing coding skills. Ask a coding question, then evaluate the response based on:
