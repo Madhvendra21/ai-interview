@@ -1,6 +1,6 @@
 import type { InterviewConfig, Message, Evaluation } from '../types';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 export const startInterview = async (config: InterviewConfig): Promise<{ message: string; interviewId: string }> => {
   const response = await fetch(`${API_URL}/api/start-interview`, {
